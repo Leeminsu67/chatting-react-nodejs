@@ -1,8 +1,8 @@
-const Chat = require("../Models/chat.model");
+const Chat = require("../Models/chat");
 
-const chatControlloer = {};
+const chatController = {};
 
-chatControlloer.saveChat = async (message, user) => {
+chatController.saveChat = async (message, user) => {
   const newMessage = new Chat({
     chat: message,
     user: {
@@ -15,4 +15,4 @@ chatControlloer.saveChat = async (message, user) => {
   return newMessage;
 };
 
-module.exports = chatControlloer;
+module.exports = chatController;

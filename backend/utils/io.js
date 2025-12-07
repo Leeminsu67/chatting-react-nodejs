@@ -1,3 +1,4 @@
+const chatController = require("../Controllers/chat.controller");
 const userController = require("../Controllers/user.controller");
 
 module.exports = function (io) {

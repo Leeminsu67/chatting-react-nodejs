@@ -23,4 +23,11 @@ userController.saveUser = async (userName, sid) => {
   return user;
 };
 
+// 소켓 아이디로 유저 찾기
+userController.checkUser = async (sid) => {
+  const user = await User.findOne({ token: sid });
+  if (!user) throw new Error("user not found");
+  return user;
+};
+
 module.exports = userController;

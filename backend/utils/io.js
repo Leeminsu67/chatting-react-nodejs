@@ -15,6 +15,19 @@ module.exports = function (io) {
       }
     });
 
+    socket.on("sendMessage", async (message, cb) => {
+      try {
+        // 유저 정보 찾기 socker id로
+        const user = await userController.checkUser(socket.id);
+        // 메세지 저장(유저 전달까지)
+        const newMessage = await chatController.saveChat(message, user);
+        io.emit("message", newMessage);
+        cb({ ok: true });
+      } catch (error) {
+        cb({ ok: false, error: error.message });
+      }
+    });
+
     socket.on("disconnect", () => {
       console.log("user disconnected:", socket.id);
     });
